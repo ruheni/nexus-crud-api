@@ -2,6 +2,336 @@
 ### Do not make changes to this file directly
 
 
+type BatchPayload {
+  count: Int!
+}
+
+input BoolFieldUpdateOperationsInput {
+  set: Boolean
+}
+
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+type Mutation {
+  createOnePost(data: PostCreateInput!): Post!
+  createOneUser(data: UserCreateInput!): User!
+  deleteManyPost(where: PostWhereInput): BatchPayload!
+  deleteManyUser(where: UserWhereInput): BatchPayload!
+  deleteOnePost(where: PostWhereUniqueInput!): Post
+  deleteOneUser(where: UserWhereUniqueInput!): User
+  updateManyPost(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  updateManyUser(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateOnePost(data: PostUpdateInput!, where: PostWhereUniqueInput!): Post
+  updateOneUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+}
+
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NullableStringFieldUpdateOperationsInput {
+  set: String
+}
+
+type Post {
+  author: User
+  content: String
+  id: Int!
+  published: Boolean!
+  title: String!
+}
+
+input PostCreateInput {
+  author: UserCreateOneWithoutPostsInput
+  content: String
+  published: Boolean
+  title: String!
+}
+
+input PostCreateManyWithoutAuthorInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
+  create: [PostCreateWithoutAuthorInput!]
+}
+
+input PostCreateOrConnectWithoutauthorInput {
+  create: PostCreateWithoutAuthorInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostCreateWithoutAuthorInput {
+  content: String
+  published: Boolean
+  title: String!
+}
+
+input PostListRelationFilter {
+  every: PostWhereInput
+  none: PostWhereInput
+  some: PostWhereInput
+}
+
+input PostScalarWhereInput {
+  AND: [PostScalarWhereInput!]
+  authorId: IntNullableFilter
+  content: StringNullableFilter
+  id: IntFilter
+  NOT: [PostScalarWhereInput!]
+  OR: [PostScalarWhereInput!]
+  published: BoolFilter
+  title: StringFilter
+}
+
+input PostUpdateInput {
+  author: UserUpdateOneWithoutPostsInput
+  content: NullableStringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+}
+
+input PostUpdateManyMutationInput {
+  content: NullableStringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+}
+
+input PostUpdateManyWithoutAuthorInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutauthorInput!]
+  create: [PostCreateWithoutAuthorInput!]
+  delete: [PostWhereUniqueInput!]
+  deleteMany: [PostScalarWhereInput!]
+  disconnect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
+  update: [PostUpdateWithWhereUniqueWithoutAuthorInput!]
+  updateMany: [PostUpdateManyWithWhereWithoutAuthorInput!]
+  upsert: [PostUpsertWithWhereUniqueWithoutAuthorInput!]
+}
+
+input PostUpdateManyWithWhereWithoutAuthorInput {
+  data: PostUpdateManyMutationInput!
+  where: PostScalarWhereInput!
+}
+
+input PostUpdateWithoutAuthorInput {
+  content: NullableStringFieldUpdateOperationsInput
+  published: BoolFieldUpdateOperationsInput
+  title: StringFieldUpdateOperationsInput
+}
+
+input PostUpdateWithWhereUniqueWithoutAuthorInput {
+  data: PostUpdateWithoutAuthorInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostUpsertWithWhereUniqueWithoutAuthorInput {
+  create: PostCreateWithoutAuthorInput!
+  update: PostUpdateWithoutAuthorInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  author: UserWhereInput
+  authorId: IntNullableFilter
+  content: StringNullableFilter
+  id: IntFilter
+  NOT: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  published: BoolFilter
+  title: StringFilter
+}
+
+input PostWhereUniqueInput {
+  id: Int
+}
+
 type Query {
-  ok: Boolean!
+  post(where: PostWhereUniqueInput!): Post
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int): [Post!]!
+  user(where: UserWhereUniqueInput!): User
+  users(after: UserWhereUniqueInput, before: UserWhereUniqueInput, first: Int, last: Int): [User!]!
+}
+
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+type User {
+  email: String!
+  id: Int!
+  name: String
+  posts(after: PostWhereUniqueInput, before: PostWhereUniqueInput, first: Int, last: Int): [Post!]!
+}
+
+input UserCreateInput {
+  email: String!
+  name: String
+  posts: PostCreateManyWithoutAuthorInput
+}
+
+input UserCreateOneWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutpostsInput
+  create: UserCreateWithoutPostsInput
+}
+
+input UserCreateOrConnectWithoutpostsInput {
+  create: UserCreateWithoutPostsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateWithoutPostsInput {
+  email: String!
+  name: String
+}
+
+input UserUpdateInput {
+  email: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+  posts: PostUpdateManyWithoutAuthorInput
+}
+
+input UserUpdateManyMutationInput {
+  email: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+}
+
+input UserUpdateOneWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutpostsInput
+  create: UserCreateWithoutPostsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: UserUpdateWithoutPostsInput
+  upsert: UserUpsertWithoutPostsInput
+}
+
+input UserUpdateWithoutPostsInput {
+  email: StringFieldUpdateOperationsInput
+  name: NullableStringFieldUpdateOperationsInput
+}
+
+input UserUpsertWithoutPostsInput {
+  create: UserCreateWithoutPostsInput!
+  update: UserUpdateWithoutPostsInput!
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  email: StringFilter
+  id: IntFilter
+  name: StringNullableFilter
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  posts: PostListRelationFilter
+}
+
+input UserWhereUniqueInput {
+  email: String
+  id: Int
 }
